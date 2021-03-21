@@ -73,7 +73,7 @@ var fiveDayForcast = function (city) {
 
 // fetch api for UV Index
 function displayUVIndex(lat, lon) {
-    var url = `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=9c776d4121d225d158430a58d8ce793e`;
+    var url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=imperial&appid=9c776d4121d225d158430a58d8ce793e`;
     
     fetch(url).then(function (response) {
         if (response.ok) {
