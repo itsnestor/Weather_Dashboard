@@ -123,9 +123,10 @@ function displayWeather(data, searchedCity) {
 // function to display 5 day weather
 function displayFiveDayForecast(forecast) {
     $("#fiveDay").html("");
-    forecast.forEach(function(day){
+    forecast.forEach(function (day) {
         var eachDay = $("<div>");
         eachDay.attr("class", "column col-2 h-auto text-left");
+        eachDay.attr("id", "dayBox");
         
         var date = $("<h6>");
         date.text(new Date(day.dt_txt).toLocaleDateString());
@@ -144,6 +145,7 @@ function displayFiveDayForecast(forecast) {
         var humidity = $("<h6>");
         humidity.text("Humidity: " + day.main.humidity + " %");
         eachDay.append(humidity);
+        var icon = $("#fiveDay").append(eachDay);
     });
 }
 
@@ -153,7 +155,7 @@ function previousCitiesSearched() {
     if (history.length === 6) {
         history.shift();
     }
-    for (let i=0; i < history.length; i++) {
+    for (let i = 0; i < history.length; i++) {
         var oldCitySearch = document.createElement("input");
         oldCitySearch.setAttribute("type", "text");
         oldCitySearch.setAttribute("readonly", true);
