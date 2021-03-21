@@ -16,7 +16,7 @@ var currentUVIndex = $("#uvIndex");
 var history = JSON.parse(localStorage.getItem("cities")) || [];
 console.log(history)
 
-var formSubmit = function(event) {
+var formSubmit = function (event) {
     event.preventDefault();
 
     var city = cityInputEl.val();
@@ -34,13 +34,13 @@ var formSubmit = function(event) {
 }
 
 // fetch api to get current weather
-var currentWeather = function(city) {
+var currentWeather = function (city) {
     var url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9c776d4121d225d158430a58d8ce793e&units=imperial`;
     
     fetch(url).then(function (response) {
         if (response.ok) {
             console.log(response);
-            return response.json().then(function(data) {
+            return response.json().then(function (data) {
                 console.log(data);
                 displayWeather(data, city);
             });
@@ -55,7 +55,7 @@ var fiveDayForcast = function (city) {
     fetch(url).then(function (response) {
         if (response.ok) {
             console.log(response);
-            return response.json().then(function(data) {
+            return response.json().then(function (data) {
                 console.log(data);
 
                 var fiveDayForcast = data.list;
@@ -73,12 +73,12 @@ var fiveDayForcast = function (city) {
 
 // fetch api for UV Index
 function displayUVIndex(lat, lon) {
-    var url = `http://api.openweathermap.org/data/2.5/uvi?lat=$(lat)&lon=$(lon)&appid=9c776d4121d225d158430a58d8ce793e`;
+    var url = `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=9c776d4121d225d158430a58d8ce793e`;
     
     fetch(url).then(function (response) {
         if (response.ok) {
             console.log(response);
-            return reposnse.json().then(function(data) {
+            return response.json().then(function (data) {
                 console.log(data);
                 var uvIndexDisplayed = data.current.uvi;
                 currentUVIndex.text("UV Index: " + uvIndexDisplayed);
@@ -153,7 +153,7 @@ function previousCitiesSearched() {
     if (history.length === 6) {
         history.shift();
     }
-    for (let i=0; i<history.length; i++) {
+    for (let i=0; i < history.length; i++) {
         var oldCitySearch = document.createElement("input");
         oldCitySearch.setAttribute("type", "text");
         oldCitySearch.setAttribute("readonly", true);

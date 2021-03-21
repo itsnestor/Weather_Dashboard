@@ -6,43 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv ="X-UA-Compatible" content="ie=edge" />
     <title>Weather Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
     <link rel="stylesheet" href="assets/style.css" />
 </head>
 
 <body>
-    <header>
+    <header class="hero text-center">
         <h1>Weather Dashboard</h1>
     </header>
 
-    <main>
+    <main class="row justify-space-between">
         <!--Search Section-->
-        <h5>Search for a city</h5>
-        <form id="cityForm">
-            <input type="text" id="searchCity" placeholder="Enter City" />
-            <button id="searchCityBtn" type="submit">
-                <i class="fas fa-search"></i>
-             </button>
-        </form>
+        <div class="searchBox col-4 col-md-4">
+            <div class="card">
+                <h5 class="card-header">Search for a city</h5>
+                <form id="cityForm">
+                    <input type="text" id="searchCity" placeholder="Enter City" />
+                    <button id="searchCityBtn" type="submit" class="btn search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
 
-        <!--Search History-->
-        <form id="cityHistory"></form>
+            <!--Search History-->
+            <form id="cityHistory" class="list-group"></form>
 
-        <!--Current Weather Info-->
-        <h2>Current Weather</h2>
-        <h2 id="date"></h2>
-        <h2 id="currentForcast"></h2>
-        <img id="weatherIcon" src="">
-        <h6 id="temperature"></h6>
-        <h6 id="humidity"></h6>
-        <h6 id="windSpeed"></h6>
-        <h6 id="uvIndex"></h6>
+            <!--Current Weather Info-->
+            <div class="currentContainer h-auto col-6 col-md-8">
+                <div class="row">
+                    <h2>Current Weather</h2>
+                    <h2 id="date"></h2>
+                </div>
+                <div class="row">
+                    <h2 id="currentForcast" class="text-uppercase"></h2>
+                    <img id="weatherIcon" src="">
+                </div>
+                <div class="row">
+                    <h6 id="temperature"></h6>
+                </div>
+                <div class="row">
+                    <h6 id="humidity"></h6>
+                </div>
+                <div class="row">
+                    <h6 id="windSpeed"></h6>
+                </div>
+                <div class="row">
+                    <h6 id="uvIndex"></h6>
+                </div>
 
-        <!--5 Day Forecast-->
-        <h2>5 Day Forcast:</h2>
-        <div id="fiveDay"></div>
+                <!--5 Day Forecast-->
+                <div class="container">
+                    <h2>5 Day Forcast:</h2>
+                    <div id="fiveDay"></div>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 
