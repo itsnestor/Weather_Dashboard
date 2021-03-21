@@ -1,3 +1,18 @@
+.hero {
+    padding: 2%;
+    background-color: rgb(32, 32, 32);
+    color: white;
+}
+
+.btn {
+    background-color: rgb(48, 48, 238);
+    color: white;
+}
+
+#cityForm {
+    padding: 10px;
+}
+
 .currentContainer {
     padding: 35px;
 }
@@ -13,6 +28,8 @@
 .column {
     padding: 5px;
     margin: 10px;
+    background-color: rgb(48, 48, 238);
+    color: white;
 }
 
 .row {

@@ -6,7 +6,7 @@ var cityInputEl = $("#searchCity");
 var searchBtn = $("#searchCityBtn");
 var searchHistoryEl = $("#cityHistory");
 var date = $("#date");
-var currentForcast = $("#currentForcast");
+var currentForecast = $("#currentForecast");
 var weatherIcon = $("#weatherIcon")
 var currentTemp = $("#temperature");
 var currentHumidity = $("#humidity");
@@ -22,7 +22,7 @@ var formSubmit = function (event) {
     var city = cityInputEl.val();
     if (city) {
         currentWeather(city);
-        fiveDayForcast(city);
+        fiveDayForecast(city);
         cityInputEl.text("");
         cityInputEl.val("");
 
@@ -48,8 +48,8 @@ var currentWeather = function (city) {
     });
 }
 
-// fetch api for 5 day forcast
-var fiveDayForcast = function (city) {
+// fetch api for 5 day forecast
+var fiveDayForecast = function (city) {
     var url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=9c776d4121d225d158430a58d8ce793e&units=imperial`;
 
     fetch(url).then(function (response) {
@@ -58,8 +58,8 @@ var fiveDayForcast = function (city) {
             return response.json().then(function (data) {
                 console.log(data);
 
-                var fiveDayForcast = data.list;
-                var filter = fiveDayForcast.filter(function (day) {
+                var fiveDayForecast = data.list;
+                var filter = fiveDayForecast.filter(function (day) {
                     if (day.dt_txt.indexOf("12:00:00") !== -1) {
                         return day;
                     }
@@ -109,7 +109,7 @@ function displayWeather(data, searchedCity) {
 
     var cityTemp = Math.round(data.main.temp);
     var windSpeed = Math.round(data.wind.speed);
-    currentForcast.text(searchedCity);
+    currentForecast.text(searchedCity);
     date.text(" (" + todayDate + ")");
     currentTemp.text("Temperature: " + cityTemp);
     currentHumidity.text("Humidity: " + data.main.humidity + " %");
@@ -163,7 +163,7 @@ function previousCitiesSearched() {
         oldCitySearch.setAttribute("value", history[i]);
         oldCitySearch.addEventListener("click", function() {
             currentWeather(oldCitySearch.value);
-            fiveDayForcast(oldCitySearch.value);
+            fiveDayForecast(oldCitySearch.value);
         });
         searchHistoryEl.append(oldCitySearch);
     }
@@ -172,7 +172,7 @@ function previousCitiesSearched() {
 previousCitiesSearched();
 if (history.length > 0) {
     currentWeather(history[history.length - 1]);
-    fiveDayForcast(history[history.length - 1]);
+    fiveDayForecast(history[history.length - 1]);
 }
 
 cityFormEl.on("submit", formSubmit);
