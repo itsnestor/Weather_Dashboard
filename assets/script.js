@@ -40,12 +40,10 @@ var currentWeather = function(city) {
     fetch(url).then(function (response) {
         if (response.ok) {
             console.log(response);
-            return response.JSON().then(function(data) {
+            return response.json().then(function(data) {
                 console.log(data);
                 displayWeather(data, city);
             });
-        } else {
-            alert("Error: " + response.statusText);
         }
     });
 }
@@ -57,31 +55,30 @@ var fiveDayForcast = function (city) {
     fetch(url).then(function (response) {
         if (response.ok) {
             console.log(response);
-            return response.JSON().then(function(data) {
+            return response.json().then(function(data) {
                 console.log(data);
 
                 var fiveDayForcast = data.list;
-                var filter = fiveDayForcast.filter(function(day) {
+                var filter = fiveDayForcast.filter(function (day) {
                     if (day.dt_txt.indexOf("12:00:00") !== -1) {
                         return day;
                     }
                 });
                 console.log(filter);
-                displayFiveDay(filter);
+                displayFiveDayForecast(filter);
             });
-        } else {
-            alert("Error: " + response.statusText);
-        }
+        } 
     });
 }
 
 // fetch api for UV Index
 function displayUVIndex(lat, lon) {
-    var url = "http://api.openweathermap.org/data/2.5/uvi?lat=$(lat)&lon=$(lon)&appid=" + apiKey;
-    fetch(url).then(function(response) {
+    var url = `http://api.openweathermap.org/data/2.5/uvi?lat=$(lat)&lon=$(lon)&appid=9c776d4121d225d158430a58d8ce793e`;
+    
+    fetch(url).then(function (response) {
         if (response.ok) {
             console.log(response);
-            return reposnse.JSON().then(function(data) {
+            return reposnse.json().then(function(data) {
                 console.log(data);
                 var uvIndexDisplayed = data.current.uvi;
                 currentUVIndex.text("UV Index: " + uvIndexDisplayed);
@@ -176,12 +173,12 @@ if (history.length > 0) {
     fiveDayForcast(history[history.length - 1]);
 }
 
-//cityFormEl.on("submit", formSubmit);
+cityFormEl.on("submit", formSubmit);
 
-searchBtn.on("click", function() {
-    var city =  cityInputEl.val();
-    console.log(input);
+// searchBtn.on("click", function() {
+//     var city =  cityInputEl.val();
+//     console.log(input);
 
-    currentWeather(city);
-    fiveDayForcast(city);
-})
+//     currentWeather(city);
+//     fiveDayForcast(city);
+// })
