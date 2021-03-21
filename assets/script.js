@@ -174,11 +174,3 @@ if (history.length > 0) {
 }
 
 cityFormEl.on("submit", formSubmit);
-
-// searchBtn.on("click", function() {
-//     var city =  cityInputEl.val();
-//     console.log(input);
-
-//     currentWeather(city);
-//     fiveDayForcast(city);
-// })
